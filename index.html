@@ -30,8 +30,8 @@
         return (
           <div className="question">
             <div className="question-title">{this.props.children}</div>
-            <button className="button button-yes" onClick={this.props.onContinue}>Yes</button>
-            <button className="button button-no" onClick={this.props.onContinue}>No</button>
+            <a className="btn green" onClick={this.props.onContinue}>Yes</a>
+            <a className="btn red" onClick={this.props.onContinue}>No</a>
           </div>
         );
       }
