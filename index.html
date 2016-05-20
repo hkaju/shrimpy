@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Is it OK to do the Shrimp Joke™?</title>
+  <meta name="description" content="Is it OK to do the Shrimp Joke™?">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser-polyfill.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-with-addons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-dom.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+  <main id="container"></main>
+
+  <script type="text/babel">
+    class Question extends React.Component {
+      render() {
+        return (
+          <div className="question">
+            <div className="question-title">{this.props.children}</div>
+            <button className="button button-yes" onClick={this.props.onContinue}>Yes</button>
+            <button className="button button-no" onClick={this.props.onContinue}>No</button>
+          </div>
+        );
+      }
+    }
+
+    class No extends React.Component {
+      render() {
+        const noVariations = [
+          'No', 'Nope', 'Definitely not', 'The answer is no', 'Absolutely not', 'Nay', 'No way',
+          'Nah, bro', 'Out of the question', 'Obviously not', 'Not for all the tea in China',
+          'Not in a million years', 'Under no circumstances', 'Not likely', '👎', 'Not now',
+          'Not today', 'Hell no', 'Fuck no', 'Ask again in a year', 'Maybe another time',
+          'Another time might work', 'It doesn’t sound like the right fit', 'Not now', 'Nah',
+          'Unfortunately not', 'Eww', 'Ick', 'In another life', 'N to the O', 'NO',
+          'Certainly not', 'No means no', "Not 'no' but not 'yes'", 'You should rethink this',
+          "Computer says 'no'",
+        ];
+
+        return <div className="no">{noVariations[Math.floor(Math.random() * noVariations.length)]}</div>;
+      }
+    }
+
+    class Loader extends React.Component {
+      render() {
+        return (
+          <div className="loader">
+            <h1>Calculating...</h1>
+            <img src="img/loader.png" />
+          </div>
+        );
+      }
+    }
+
+    class ShrimpApp extends React.Component {
+      constructor() {
+        super();
+
+        this.state = { loading: true, questionsAnswered: 0 };
+        this.continue = () => {
+          this.setState({ questionsAnswered: this.state.questionsAnswered + 1 });
+          if (this.state.questionsAnswered >= 4) {
+            const loadingTime = Math.random() * 5000;
+            setTimeout(() => this.setState({ loading: false }), loadingTime);
+          }
+        };
+        this.questions = [
+          'Are you at a public location?', 'Are there kids nearby?', 'Is everyone in your group over 18?', 'Are you at a party?', 'Are you drunk?'
+        ];
+      }
+
+      renderContents() {
+        if (this.state.questionsAnswered < 5) {
+          return <Question onContinue={this.continue}>{this.questions[this.state.questionsAnswered]}</Question>;
+        } else {
+          if (this.state.loading) {
+            return <Loader />;
+          } else {
+            return <No />
+          }
+        }
+        return null;
+      }
+
+      render() {
+        return (
+          <div className="app">
+            <div className="page-contents">
+              {this.state.questionsAnswered < 5 ? <div className="explanation">🍤 Is it OK to do the Shrimp Joke™? 🍤</div> : null}
+              {this.renderContents()}
+            </div>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<ShrimpApp />, document.getElementById('container'));
+  </script>
+</body>
+</html>

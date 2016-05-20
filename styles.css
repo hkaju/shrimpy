@@ -1,0 +1,113 @@
+body, #container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  font-family: Helvetica;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url(img/background.png);
+
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center;
+}
+
+.page-contents {
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  max-height: 500px;
+
+  padding: 50px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin { 100% { transform:rotate(-360deg); } }
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader > h1 {
+  font-family: Lobster;
+}
+
+.loader > img {
+  animation: spin 2s linear infinite;
+}
+
+.explanation {
+  width: 100%;
+  text-align: center;
+
+  margin-bottom: 70px;
+
+  font-size: 36px;
+  font-weight: bold;
+  font-family: Lobster;
+}
+
+.question {
+  width: 70%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;;
+  align-items: center;
+}
+
+.question-title {
+  font-size: 20px;
+  font-weight: bold;
+  flex-basis: 100%;
+  margin-bottom: 20px;
+}
+
+.button {
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+}
+
+.button-yes {
+  color: white;
+  background-color: green;
+}
+
+.button-no {
+  color: white;
+  background-color: red;
+}
+
+.no {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: Lobster;
+}
