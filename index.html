@@ -72,7 +72,7 @@
         this.state = { loading: true, questionsAnswered: 0 };
         this.continue = () => {
           this.setState({ questionsAnswered: this.state.questionsAnswered + 1 });
-          if (this.state.questionsAnswered >= 4) {
+          if (this.state.questionsAnswered >= 5) {
             const loadingTime = Math.random() * 5000;
             setTimeout(() => this.setState({ loading: false }), loadingTime);
           }
@@ -99,7 +99,7 @@
         return (
           <div className="app">
             <div className="page-contents">
-              {this.state.questionsAnswered < 5 ? <div className="explanation">🍤 Is it OK to do the<br/>Shrimp Joke™? 🍤</div> : null}
+              {this.state.questionsAnswered < 6 ? <div className="explanation">🍤 Is it OK to do the<br/>Shrimp Joke™? 🍤</div> : null}
               {this.renderContents()}
             </div>
           </div>
