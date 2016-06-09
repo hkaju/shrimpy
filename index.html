@@ -83,7 +83,7 @@
       }
 
       renderContents() {
-        if (this.state.questionsAnswered < 5) {
+        if (this.state.questionsAnswered < 6) {
           return <Question onContinue={this.continue}>{this.questions[this.state.questionsAnswered]}</Question>;
         } else {
           if (this.state.loading) {
